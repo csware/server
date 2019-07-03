@@ -182,7 +182,7 @@ class Generator {
 
 			foreach ($providers as $providerClosure) {
 				$provider = $this->helper->getProvider($providerClosure);
-				if (!($provider instanceof IProviderV2)) {
+				if (!($provider instanceof IProvider || $provider instanceof IProviderV2)) {
 					continue;
 				}
 

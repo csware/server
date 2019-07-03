@@ -36,6 +36,7 @@ use OCP\Files\SimpleFS\ISimpleFile;
 use OCP\IConfig;
 use OCP\IPreview;
 use OCP\Preview\IProvider;
+use OCP\Preview\IProviderV2;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class PreviewManager implements IPreview {
@@ -257,7 +258,7 @@ class PreviewManager implements IPreview {
 			if (preg_match($supportedMimeType, $file->getMimetype())) {
 				foreach ($providers as $closure) {
 					$provider = $closure();
-					if (!($provider instanceof IProvider)) {
+					if (!($provider instanceof IProvider || $provider instanceof IProviderV2)) {
 						continue;
 					}
 
